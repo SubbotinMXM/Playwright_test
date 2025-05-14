@@ -16,7 +16,7 @@ jobs:
     name: Build Project
     runs-on: ubuntu-latest
     container:
-      image: gradle:8.3-jdk21
+      image: gradle:8.3-jdk20
 
     steps:
       - name: Checkout sources
@@ -31,7 +31,7 @@ jobs:
     needs: build
     continue-on-error: true
     container:
-      image: gradle:8.3-jdk21
+      image: gradle:8.3-jdk20
 
     steps:
       - name: Checkout sources
