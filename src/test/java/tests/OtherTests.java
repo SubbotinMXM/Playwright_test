@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import pages.MainPage;
 
 @Tag("Regress")
-@Tag("Smoke")
 public class OtherTests extends TestBase {
 
     @Test
