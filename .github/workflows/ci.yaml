@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    name: Build Project
+    name: Build Project (without tests)
     runs-on: ubuntu-latest
     container:
       image: gradle:8.3-jdk20
@@ -22,8 +22,8 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v3
 
-      - name: Build with Gradle
-        run: gradle clean build --no-daemon --console=plain
+      - name: Build without tests
+        run: gradle clean build -x test --no-daemon --console=plain
 
   test:
     name: Run Tests and Collect Allure Report
@@ -31,16 +31,23 @@ jobs:
     needs: build
     continue-on-error: true
     container:
-      image: gradle:8.3-jdk20
+      image: mcr.microsoft.com/playwright:focal
 
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
 
+      - name: Install Gradle 8.3 via SDKMAN
+        run: |
+          curl -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install gradle 8.3
+          gradle --version
+
       - name: Run tests with tag
         env:
           TEST_TAG: ${{ env.TEST_TAG }}
-        run: gradle clean -PtestTag=${{ env.TEST_TAG }} --no-daemon --console=plain
+        run: gradle clean test -PtestTag=${{ env.TEST_TAG }} --no-daemon --console=plain
 
       - name: Save Allure results as artifact
         uses: actions/upload-artifact@v3
@@ -77,3 +84,8 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          user_name: github-actions
+          user_email: github-actions@github.com
