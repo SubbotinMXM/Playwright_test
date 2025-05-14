@@ -50,7 +50,7 @@ jobs:
         run: gradle clean -PtestTag=${{ env.TEST_TAG }} --no-daemon --console=plain
 
       - name: Save Allure results as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@4a05f94
         with:
           name: allure-results
           path: build/allure-results
