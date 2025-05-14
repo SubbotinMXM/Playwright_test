@@ -1,6 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","26389","тест 3","","Wed May 14 21:05:43 GMT 2025","passed","Wed May 14 21:06:09 GMT 2025","","tests.SmokeTests","tests.SmokeTests","test3"
-"","26397","тест 5","","Wed May 14 21:05:43 GMT 2025","failed","Wed May 14 21:06:09 GMT 2025","","tests.SmokeTests","tests.SmokeTests","test5"
-"","26391","тест 1","","Wed May 14 21:05:43 GMT 2025","passed","Wed May 14 21:06:09 GMT 2025","","tests.SmokeTests","tests.SmokeTests","test1"
-"","26389","тест 2","","Wed May 14 21:05:43 GMT 2025","passed","Wed May 14 21:06:09 GMT 2025","","tests.SmokeTests","tests.SmokeTests","test2"
-"","826","тест 4","","Wed May 14 21:06:10 GMT 2025","failed","Wed May 14 21:06:10 GMT 2025","","tests.SmokeTests","tests.SmokeTests","test4"
