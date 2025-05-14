@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id("io.qameta.allure") version "2.12.0"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('org.junit:junit-bom:5.10.0')
+    implementation 'org.junit.jupiter:junit-jupiter'
+    implementation group: 'org.aeonbits.owner', name: 'owner', version: '1.0.12'
+    implementation 'com.microsoft.playwright:playwright:1.52.0'
+    implementation 'io.qameta.allure:allure-junit5:2.28.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    systemProperties(System.getProperties())
+}
+
+task smoke(type: Test) {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    systemProperties(System.getProperties())
+    useJUnitPlatform() {
+        includeTags("Smoke")
+    }
+}
+
+task regress(type: Test) {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    systemProperties(System.getProperties())
+    useJUnitPlatform() {
+        includeTags("Smoke", "Regress")
+    }
+}
