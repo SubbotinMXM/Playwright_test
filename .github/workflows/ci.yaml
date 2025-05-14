@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run tests with tag
-        run: gradle clean $TEST_TAG
+        run: gradle clean ${{TEST_TAG}}
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master
