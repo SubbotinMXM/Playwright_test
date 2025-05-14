@@ -30,7 +30,7 @@ jobs:
       - name: Run tests with tag
         env:
           TEST_TAG: ${{ env.TEST_TAG }}
-        run: gradle clean -PtestTag=${{ env.TEST_TAG }}
+        run: gradle clean ${{ env.TEST_TAG }}
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master
